@@ -31,7 +31,7 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        $books = Book::where('category_id', $category->id)->get();
+        $books = Book::where('category_id', $category->id)->where('status','approved')->get();
         return view('categories.show', compact('category','books'));
     }
 

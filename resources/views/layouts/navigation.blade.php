@@ -29,6 +29,14 @@
                             {{ __('Kategori Master') }}
                         </x-nav-link>
                     @endif
+                    @if(Auth::user())
+                        <x-nav-link :href="route('publish.index')" :active="request()->routeIs('publish.index')">
+                            {{ __('Ajukan Buku') }}
+                        </x-nav-link>
+                        <x-nav-link :href="route('bookmarks')" :active="request()->routeIs('bookmarks')">
+                            {{ __('Bookmarks') }}
+                        </x-nav-link>
+                    @endif
 
                     <x-dropdown-header>
                         <x-slot name="trigger">

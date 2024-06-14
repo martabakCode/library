@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('book_cover')->nullable();
             $table->string('author');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->enum('status', ['pending', 'approved', 'rejected'])->default('pending');
             $table->string('penerbit');
             $table->string('shelf');
             $table->integer('row');

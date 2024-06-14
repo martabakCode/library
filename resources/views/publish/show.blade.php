@@ -19,9 +19,7 @@
                     <div class="flex-none w-full mt-2 text-sm font-medium text-gray-500 dark:text-gray-300">{{ $book->penerbit }}</div>
                     <div class="flex-none w-full mt-2 text-sm font-medium text-gray-500 dark:text-gray-300">{{ $book->shelf }} - {{ $book->row }}</div>
                 </div>
-
                 <div class="flex items-baseline mt-4 mb-6 text-gray-700 dark:text-gray-300">
-
                     <p class="hidden ml-auto text-sm text-gray-500 md:block dark:text-gray-300">{{ $book->stok }} pcs</p>
                 </div>
                 @auth
@@ -47,23 +45,7 @@
                         class="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg ">Pinjam</button>
                 </div>
                 @endauth
-
             </form>
-            @auth
-
-
-                @if(Auth::user()->bookmarks->contains($book->id))
-                    <form action="{{ route('books.unbookmark', $book->id) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded">Unbookmark</button>
-                    </form>
-                @else
-                    <form action="{{ route('books.bookmark', $book->id) }}" method="POST">
-                        @csrf
-                        <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Bookmark</button>
-                    </form>
-                @endif
-                @endauth
         </div>
     </div>
 </x-app-layout>

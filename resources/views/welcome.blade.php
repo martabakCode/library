@@ -8,7 +8,7 @@
     <div class="container mx-auto p-4">
         <h1 class="text-3xl font-bold mb-6 text-gray-900 dark:text-white">All Book</h1>
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            @foreach(\App\Models\Book::all() as $book)
+            @foreach(\App\Models\Book::where('status','approved')->get() as $book)
             <a href="{{ route('books.show', $book->id) }}">
             <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700 mx-auto">
 

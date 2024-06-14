@@ -42,7 +42,8 @@ class BookController extends Controller
         ]);
 
         $data = $request->all();
-
+        $data['status'] = 'approved';
+        $data['user_id'] = Auth::user()->id;
         if ($request->hasFile('book_cover')) {
             $data['book_cover'] = $request->file('book_cover')->store('book_covers','public');
         }
@@ -155,5 +156,56 @@ class BookController extends Controller
 
         return view('books.borrow-approve', compact('bookRequests'));
     }
+    public function approve(Book $book)
+    {
+        // Update status of the book borrow request
+        $book->update(['status' => 'approved']);
+        // Notify the user that their borrow request has been approved
+        // $request->user->notify(new BookBorrowApprovedNotification($request->book));
+
+        return redirect()->back()->with('success', 'Borrow request approved.');
+    }
+    public function disapprove(Book $book)
+    {
+        // Update status of the book borrow request
+        $book->update(['status' => 'rejected']);
+        // Notify the user that their borrow request has been approved
+        // $request->user->notify(new BookBorrowApprovedNotification($request->book));
+
+        return redirect()->back()->with('success', 'Borrow request approved.');
+    }
+
+    public function bookmark(Book $book)
+{
+    $user = Auth::user();
+
+    if ($user->bookmarks()->where('book_id', $book->id)->exists()) {
+        return redirect()->back()->with('error', 'You have already bookmarked this book.');
+    }
+
+    $user->bookmarks()->attach($book->id);
+
+    return redirect()->back()->with('success', 'Book bookmarked successfully.');
+}
+
+public function unbookmark(Book $book)
+{
+    $user = Auth::user();
+
+    if (!$user->bookmarks()->where('book_id', $book->id)->exists()) {
+        return redirect()->back()->with('error', 'You have not bookmarked this book.');
+    }
+
+    $user->bookmarks()->detach($book->id);
+
+    return redirect()->back()->with('success', 'Book unbookmarked successfully.');
+}
+public function bookmarks()
+{
+    $user = Auth::user();
+    $books = $user->bookmarks;
+
+    return view('bookmarks', compact('books'));
+}
 
 }
