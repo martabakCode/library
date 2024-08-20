@@ -31,7 +31,7 @@
                 @if (empty($request))
                 <div class="flex mb-4 text-sm font-medium gap-4">
                     <button type="submit"
-                        class="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg ">Pinjam</button>
+                        class="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg ">Baca</button>
                 </div>
                 @elseif ($request->status == 'pending')
                     <div class="flex mb-4 text-sm font-medium gap-4">
@@ -44,7 +44,7 @@
                 @else
                 <div class="flex mb-4 text-sm font-medium gap-4">
                     <button type="submit"
-                        class="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg ">Pinjam</button>
+                        class="py-2 px-4 bg-indigo-600 hover:bg-indigo-700 focus:ring-indigo-500 focus:ring-offset-indigo-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg ">Baca</button>
                 </div>
                 @endauth
 
